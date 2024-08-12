@@ -7,6 +7,7 @@ class Alunos(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     senha = models.CharField(max_length=100)
+    imagem = models.models.CharField(max_length=100)
     #eletiva que ele estuda
     eletiva = models.CharField(max_length=50, null=True, blank=False)
 
@@ -16,6 +17,7 @@ class Professores(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     senha = models.CharField(max_length=100)
+    imagem = models.models.CharField(max_length=100)
     
 
 class Admins(models.Model):
