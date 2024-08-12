@@ -247,14 +247,15 @@ def add_professor(request,eletiva):
             nome = request.POST.get('nome')
             email = request.POST.get('email')
             senha = request.POST.get('password')
-            form = [select,nome,email,senha]
+            imagem = request.POST.get('imagem')
+            form = [select,nome,email,senha, imagem]
             for i in form:
                 if i == '':
                     dados = {}
                     dados['eletivas'] = Eletivas.objects.all().values()
                     messages.info(request,'Nenhum campo pode ser deixado em branco')
                     return render(request,'addprofessor.html',dados)
-            professor = Professores(eletiva=select,nome=nome,email=email,senha=senha)
+            professor = Professores(eletiva=select,nome=nome,email=email,senha=senha, imagem=imagem)
             professor.save()
             return redirect(eletivas)
         else:
@@ -267,7 +268,7 @@ def add_aluno(request):
         return redirect(retornar_index)
     else:
         if request.method == 'POST':
-            aluno = Alunos(serie=request.POST.get('serie'),nome=request.POST.get('nome'),email=request.POST.get('email'),senha=request.POST.get('senha'),eletiva=request.POST.get('select'))
+            aluno = Alunos(serie=request.POST.get('serie'),nome=request.POST.get('nome'),email=request.POST.get('email'),senha=request.POST.get('senha'),imagem=request.POST.get('imagem')eletiva=request.POST.get('select'))
             aluno.save()
             return redirect(ver_eletiva,eletiva=request.POST.get('select'))
         else:
